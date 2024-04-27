@@ -22,9 +22,31 @@ Step 11: Perform speech recognition with exceptional handling:<Br>
 •	A generic exception block captures any other unexpected errors.<Br>
 <H3>Program:</H3>
 
-Insert your code her
+```python
+import speech_recognition as sr
+
+r = sr.Recognizer()
+duration = 8
+print("Say something: ")
+with sr.Microphone() as source:
+    audio_data = r.listen(source, timeout=duration)
+
+try:
+    text = r.recognize_google(audio_data)
+    print('You said:', text)
+except sr.UnknownValueError:
+    print("Sorry, could not understand audio")
+except sr.RequestError as e:
+    print(f"Error with the request to Google Speech Recognition service: {e}")
+except Exception as e:
+    print(f"Error: {e}")
+```
 
 <H3> Output:</H3>
-Show the results here
+
+![image](https://github.com/MeethaPrabhu/Ex-8--AAI/assets/119401038/b6248f23-adc2-46b9-8e47-94efc3c59b88)
+
+![image](https://github.com/MeethaPrabhu/Ex-8--AAI/assets/119401038/d5b57db6-8288-4575-ad36-3368f46b4e23)
 
 <H3> Result:</H3>
+Thus, the speech is recorded using microphone and recognized it as text using Speech Recognition
